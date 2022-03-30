@@ -8,3 +8,29 @@ Initial set of objects; expected to be updated as project evolves.
 - [ ] setup jenkins on docker
 - [ ] build a ci/cd pipeline
 - [ ] monitor metrics and logs
+* docker config
+** DONE configure jenkins
+:PROPERTIES:
+:header-args: :results pp
+:END:
+*** docker images
+Pull latest image form docker hub.
+#+begin_src sh
+docker pull jenkins/jenkins
+#+end_src
+
+#+begin_src sh
+docker images | grep jenkins
+#+end_src
+
+#+RESULTS:
+: jenkins/jenkins               latest              9c941210afa1   12 hours ago    460MB
+*** docker run
+
+run and jenkins and create the volume
+#+begin_src sh
+docker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins
+#+end_src
+
+#+RESULTS:
+: a5db6e91831b5e250f59947f33bf16056fbe81d666a29b9ac0680e7406cf9395
